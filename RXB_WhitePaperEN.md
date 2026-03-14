@@ -438,7 +438,13 @@ Implementation incorporates LWMA difficulty adjustment algorithm developed by Za
  
 ensuring responsive network adaptation
 
-System was built on Bitcoin structure and libraries of version 20.2. 
+RXB 
+Allows users to record permanent Proof of Existence data via the OP_RETURN field. 
+Simply each entry uses a separate address in the UTXO model every record remains autonomous.
+
+
+
+ 
 
 I wish you success in mining. 
 

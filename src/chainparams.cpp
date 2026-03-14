@@ -118,6 +118,7 @@ public:
 
         consensus.hashGenesisBlock = uint256S("0x0000000014766203f48e47b0c76ac24c9c23a1c9aeacce12c4e3648194f68b50");
         assert(genesis.hashMerkleRoot == uint256S("0x2f41a21f88d745bdeeff375226e5a8b676381157cdd8106459a1cf27a194bc10"));
+        assert(genesis.GetHash() == consensus.hashGenesisBlock);
 
         vSeeds.clear();
         vSeeds.emplace_back("5v2v5vq2jz6hjwzblnfvqr6rizbxllyst3wkcnfz7np2lskjsmrl2tqd.onion:8327");
@@ -133,8 +134,8 @@ public:
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 25);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 28);
         base58Prefixes[SECRET_KEY]     = std::vector<unsigned char>(1, 210);
-        base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
-        base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
+        base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x0E, 0xC9, 0x61};
+        base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x0E, 0xC9, 0x4C};
         bech32_hrp = "rxb";
 
         fDefaultConsistencyChecks = false;
@@ -144,14 +145,15 @@ public:
 
         checkpointData = {
             {
-                {0, consensus.hashGenesisBlock}
+                {0, consensus.hashGenesisBlock},
+                {700, uint256S("0x00000000649f7028b0a07cf22235a72ec2b1f576f2e6ffb51bd7adc6be16cbf8")}
             }
         };
 
         chainTxData = ChainTxData{
-            1772313120,
-            0,
-            0.0
+            1773464932,
+            700,
+            0.0006
         };
     }
 };

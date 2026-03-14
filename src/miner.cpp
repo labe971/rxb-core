@@ -469,6 +469,7 @@ bool RXBMiner::MineBlock(CBlock& block, const CChainParams& chainparams) {
             block.nTime = GetAdjustedTime();
         }
         
+        block.nNonce = nNonce;
         uint256 hash = block.GetHash();
         
         if (UintToArith256(hash) <= hashTarget) {
@@ -548,6 +549,8 @@ void RXBMiner::MiningThread(const std::string& address, int threadId) {
             }
             
             CBlock block = pblocktemplate->block;
+            unsigned int nExtraNonce = 0;
+            IncrementExtraNonce(&block, ChainActive().Tip(), nExtraNonce);
             
             if (MineBlock(block, Params())) {
                 {
@@ -650,8 +653,10 @@ UniValue startmining(const JSONRPCRequest& request) {
     
     std::string address = request.params[0].get_str();
     int threads = 1;
-    if (request.params.size() > 1)
-        threads = request.params[1].get_int();
+    if (request.params.size() > 1) {
+        if (request.params[1].isNum()) threads = request.params[1].get_int();
+        else threads = atoi(request.params[1].get_str().c_str());
+    }
     
     if (threads < 1 || threads > 10)
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid number of threads");

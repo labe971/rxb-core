@@ -525,8 +525,6 @@ Jak sprawdzic sume kontrolna w Windows:
 2. Wpisz: Get-FileHash .\rxb-0.1.0-win64-setup-unsigned.exe
 3. Porownaj wynik z powyzszym
 
-Jezeli sumy sie nie zgadzaja - NIE URUCHAMIAJ PLIKU!
-
 
 ===============================================================================
 
