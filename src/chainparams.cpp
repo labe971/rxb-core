@@ -124,7 +124,6 @@ public:
         vSeeds.emplace_back("5v2v5vq2jz6hjwzblnfvqr6rizbxllyst3wkcnfz7np2lskjsmrl2tqd.onion:8327");
         vSeeds.emplace_back("ig32f2l3xphumkptinc5j5ic4kj6mdyhobcfctcbkpfg4rhiuvbojmid.onion:8327");
         vSeeds.emplace_back("74zt3nxpo4sjjix47crkasbjk3gbsngrcqe4wi3q55aytjhns3ajyqqd.onion:8327");
-        vSeeds.emplace_back("151.236.24.137:8327");
 
         vFixedSeeds = std::vector<SeedSpec6>(
             pnSeed6_main,
