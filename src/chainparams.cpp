@@ -145,14 +145,16 @@ public:
         checkpointData = {
             {
                 {0, consensus.hashGenesisBlock},
-                {700, uint256S("0x00000000649f7028b0a07cf22235a72ec2b1f576f2e6ffb51bd7adc6be16cbf8")}
+                {700, uint256S("0x00000000649f7028b0a07cf22235a72ec2b1f576f2e6ffb51bd7adc6be16cbf8")},
+                {1437, uint256S("0x000000000aa8d4c337b2602915a0f74a6b71a7c3a3f48f355d521039f231a2ca")}
+
             }
         };
 
         chainTxData = ChainTxData{
-            1773464932,
-            700,
-            0.0006
+            1774183880,
+            1437,
+            0.0016
         };
     }
 };
