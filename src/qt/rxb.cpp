@@ -477,7 +477,6 @@ int GuiMain(int argc, char* argv[])
         pal.setColor(QPalette::ButtonText,      QColor("#FFFFFF"));
         pal.setColor(QPalette::Highlight,       QColor("#00A36C"));
         pal.setColor(QPalette::HighlightedText, QColor("#FFFFFF"));
-        pal.setColor(QPalette::PlaceholderText, QColor("#6C757D"));
         pal.setColor(QPalette::ToolTipBase,     QColor("#F4F4F6"));
         pal.setColor(QPalette::ToolTipText,     QColor("#1A1A1A"));
         pal.setColor(QPalette::Disabled, QPalette::Text,       QColor("#6C757D"));

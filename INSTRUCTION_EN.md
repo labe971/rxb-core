@@ -448,7 +448,7 @@ Important files:
 PROJECT INFORMATION
 ===============================================================================
 
-Website: https://rxb.org
+Website: https://rxbcore.org
 
 Version: 0.1.0
 Release date: January 2025

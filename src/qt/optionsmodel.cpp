@@ -220,7 +220,13 @@ static ProxySetting GetProxySetting(QSettings &settings, const QString &name)
         return default_val;
     }
     // contains IP at index 0 and port at index 1
-    QStringList ip_port = settings.value(name).toString().split(":", Qt::SkipEmptyParts);
+    QStringList ip_port = settings.value(name).toString().split(":", 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+        Qt::SkipEmptyParts
+#else
+        QString::SkipEmptyParts
+#endif
+        );
     if (ip_port.size() == 2) {
         return {true, ip_port.at(0), ip_port.at(1)};
     } else { // Invalid: return default

@@ -11,7 +11,7 @@ RXB is an independent cryptocurrency using proven blockchain technology and cryp
 - No Ordinals/Inscriptions
 
 **Downloads:**
-- Binaries: [rxb.org](https://rxb.org)
+- Binaries: [rxbcore.org](https://rxbcore.org)
 - Source: [github.com/Heiwabitnull/rxb-core](https://github.com/Heiwabitnull/rxb-core)
 - Whitepaper: [Read here](https://raw.githubusercontent.com/Heiwabitnull/RXBWhitepaper/refs/heads/main/RXBWhitepaper_EN.md)
 
@@ -34,4 +34,4 @@ Unpack the files into a directory, and then run rxb-qt.exe.
 
 Drag RXB Core to your applications folder and then run RXB Core.
 
-**Website:** [rxb.org](https://rxb.org)
+**Website:** [rxbcore.org](https://rxbcore.org)

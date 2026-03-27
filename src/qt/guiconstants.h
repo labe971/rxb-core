@@ -44,7 +44,7 @@ static const int TOOLTIP_WRAP_THRESHOLD = 80;
 #define SPINNER_FRAMES 36
 
 #define QAPP_ORG_NAME "RXB"
-#define QAPP_ORG_DOMAIN "rxb.org"
+#define QAPP_ORG_DOMAIN "rxbcore.org"
 #define QAPP_APP_NAME_DEFAULT "RXB-Qt"
 #define QAPP_APP_NAME_TESTNET "RXB-Qt-testnet"
 #define QAPP_APP_NAME_REGTEST "RXB-Qt-regtest"

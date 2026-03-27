@@ -449,7 +449,7 @@ Wichtige Dateien:
 PROJEKTINFORMATIONEN
 ===============================================================================
 
-Website: https://rxb.org
+Website: https://rxbcore.org
 
 Version: 0.1.0
 Veröffentlichungsdatum: Januar 2025

@@ -1,6 +1,6 @@
 # RXB Integration 
 
-Official website https://rxb.org/
+Official website https://rxbcore.org/
 
 Source code https://github.com/Heiwabitnull/rxb-core.git
 

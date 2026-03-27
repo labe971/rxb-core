@@ -273,7 +273,7 @@
 #define PACKAGE_TARNAME "rxb"
 
 /* Define to the home page for this package. */
-#define PACKAGE_URL "https://rxb.org/"
+#define PACKAGE_URL "https://rxbcore.org/"
 
 /* Define to the version of this package. */
 #define PACKAGE_VERSION "0.1.0"

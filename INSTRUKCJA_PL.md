@@ -455,7 +455,7 @@ Wazne pliki:
 INFORMACJE O PROJEKCIE
 ===============================================================================
 
-Strona internetowa: https://rxb.org
+Strona internetowa: https://rxbcore.org
 
 Wersja: 0.1.0 Eksperymentalna to oznacznie experymntalna jest spowodownae ze jest to pierwsza wersja.
 Data wydania: Styczen 2025
