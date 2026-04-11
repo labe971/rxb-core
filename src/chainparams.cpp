@@ -146,15 +146,16 @@ public:
             {
                 {0, consensus.hashGenesisBlock},
                 {700, uint256S("0x00000000649f7028b0a07cf22235a72ec2b1f576f2e6ffb51bd7adc6be16cbf8")},
-                {1437, uint256S("0x000000000aa8d4c337b2602915a0f74a6b71a7c3a3f48f355d521039f231a2ca")}
+                {1437, uint256S("0x000000000aa8d4c337b2602915a0f74a6b71a7c3a3f48f355d521039f231a2ca")},
+                {3500, uint256S("0x000000009629e422577342627781f77b4bd5d94f74546cc86c268fe9979289b9")},
 
             }
         };
 
         chainTxData = ChainTxData{
-            1774183880,
-            1437,
-            0.0016
+            1775941992,
+            3500,
+            0.00096
         };
     }
 };
