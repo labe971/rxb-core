@@ -1,12 +1,5 @@
 # RXB Mainnet Seed Nodes
 # Format: <ip|onion>:<port>
 # Port: 8327 (RXB custom port)
-
 # IPv4 bridge
-151.236.24.137:8327
-
-# Tor v2
-
-# IPv6 seeds (community can add later)
-# [2001:db8::1]:8327
-[2a02:8108:94a1:9400:c69e:6172:2fcc:a539]:8327
+135.181.255.219:8327
