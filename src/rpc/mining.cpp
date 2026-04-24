@@ -989,6 +989,10 @@ void RegisterMiningRPCCommands(CRPCTable &t)
 static const CRPCCommand commands[] =
 { //  category              name                      actor (function)         argNames
   //  --------------------- ------------------------  -----------------------  ----------
+    { "mining",             "startmining",            &startmining,            {"address","threads"} },
+    { "mining",             "stopmining",             &stopmining,             {} },
+    { "mining",             "getmininginfo",          &getmininginfo,          {} },
+    { "mining",             "setgenerate",            &setgenerate,            {"generate","genproclimit"} },
     { "mining",             "getnetworkhashps",       &getnetworkhashps,       {"nblocks","height"} },
     { "mining",             "prioritisetransaction",  &prioritisetransaction,  {"txid","dummy","fee_delta"} },
     { "mining",             "getblocktemplate",       &getblocktemplate,       {"template_request"} },
