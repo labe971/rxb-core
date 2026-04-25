@@ -731,8 +731,8 @@ UniValue getmininginfo(const JSONRPCRequest& request) {
     double difficulty = GetDifficulty(::ChainActive().Tip());
     obj.pushKV("difficulty", difficulty);
     
-    CTxMemPool& mempool = ::mempool;
-    obj.pushKV("networkhashps",    0); // Not implemented for now
+extern UniValue GetNetworkHashPS(int lookup, int height);
+    obj.pushKV("networkhashps", GetNetworkHashPS(120, -1).get_real());
     obj.pushKV("pooledtx",         (uint64_t)mempool.size());
     obj.pushKV("chain",            Params().NetworkIDString());
     
