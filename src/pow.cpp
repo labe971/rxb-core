@@ -17,7 +17,6 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast,
     const int64_t N = 60;
     const int64_t T = params.nPowTargetSpacing;
     const int64_t k = N * (N + 1) / 2;
-
     const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);
 
     if (pindexLast->nHeight < N) {
@@ -26,7 +25,6 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast,
 
     std::vector<const CBlockIndex*> blocks;
     blocks.reserve(N + 1);
-
     const CBlockIndex* pindex = pindexLast;
     for (int i = 0; i <= N; ++i) {
         blocks.push_back(pindex);
@@ -38,11 +36,16 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast,
 
     int64_t weighted_sum = 0;
     for (int i = 0; i < N; ++i) {
-        int64_t solvetime = blocks[i]->GetBlockTime() - blocks[i + 1]->GetBlockTime();
+        int64_t solvetime = blocks[i]->GetBlockTime()
+                          - blocks[i + 1]->GetBlockTime();
+
         solvetime = std::max<int64_t>(solvetime, 1);
-        solvetime = std::min<int64_t>(solvetime, 6 * T);
-        int64_t weight    = N - i;
-        weighted_sum     += solvetime * weight;
+
+        // Raised from 6*T to 100*T so the algorithm properly accounts
+        // for extended periods of inactivity on the chain.
+        solvetime = std::min<int64_t>(solvetime, 100 * T);
+
+        weighted_sum += solvetime * (N - i);
     }
 
     int64_t LWMA = weighted_sum / k;
@@ -51,9 +54,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast,
     arith_uint256 bnNew;
     bnNew.SetCompact(pindexLast->nBits);
 
-    if (T <= 0) {
-        return bnPowLimit.GetCompact();
-    }
+    if (T <= 0) return bnPowLimit.GetCompact();
 
     bnNew *= arith_uint256(LWMA);
     bnNew /= arith_uint256(T);
@@ -61,22 +62,23 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast,
     arith_uint256 bnPrev;
     bnPrev.SetCompact(pindexLast->nBits);
 
-    arith_uint256 bnMax = bnPrev;
-    bnMax /= 3;
+    if (bnPrev > bnPowLimit) bnPrev = bnPowLimit;
 
-    arith_uint256 bnMin = bnPrev;
-    bnMin *= 3;
+    // Difficulty may increase by no more than 5 percent per block.
+    // bnPrev * 95 is well within 256-bit bounds given standard powLimit.
+    arith_uint256 bnMaxGrowth = (bnPrev * 95) / 100;
 
-    if (bnNew < bnMax) bnNew = bnMax;
-    if (bnNew > bnMin) bnNew = bnMin;
+    // Difficulty may decrease by no more than 33 percent per block.
+    // bnPrev * 150 is well within 256-bit bounds given standard powLimit.
+    arith_uint256 bnMaxDrop = (bnPrev * 150) / 100;
 
-    if (bnNew == 0) {
-        bnNew = 1;
-    }
+    if (bnMaxDrop > bnPowLimit) bnMaxDrop = bnPowLimit;
 
-    if (bnNew > bnPowLimit) {
-        bnNew = bnPowLimit;
-    }
+    if (bnNew < bnMaxGrowth) bnNew = bnMaxGrowth;
+    if (bnNew > bnMaxDrop)   bnNew = bnMaxDrop;
+
+    if (bnNew == 0)          bnNew = 1;
+    if (bnNew > bnPowLimit)  bnNew = bnPowLimit;
 
     return bnNew.GetCompact();
 }
