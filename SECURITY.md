@@ -1,6 +1,6 @@
 # Security Policy
 ## Version
-This is an  version 0.2.0 of RXB-core. 
+This is an  version 0.3.0 of RXB-core. 
 Use at your own risk.
 ## Reporting
 At this stage RXB is simply  but its alive.

@@ -56,8 +56,8 @@ done
 shift $((OPTIND-1))
 
 if [ -z "$1" ]; then
-  echo "Specify release tag(s), e.g.: ./previous_release.sh v0.2.0"
-  echo "Note: RXB v0.2.0 is the first release"
+  echo "Specify release tag(s), e.g.: ./previous_release.sh v0.3.0"
+  echo "Note: RXB v0.3.0 is the first release"
   exit 1
 fi
 

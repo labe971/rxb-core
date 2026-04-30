@@ -1,5 +1,5 @@
 ===============================================================================
-RXB-core v0.2.0 - Vollständige Anleitung für Windows
+RXB-core v0.3.0 - Vollständige Anleitung für Windows
 ===============================================================================
 
 INHALTSVERZEICHNIS:
@@ -18,7 +18,7 @@ INHALTSVERZEICHNIS:
 ===============================================================================
 
 OPTION A: INSTALLATIONSPROGRAMM (empfohlen)
-Datei: rxb-0.2.0-win64-setup-unsigned.exe (17 MB)
+Datei: rxb-0.3.0-win64-setup-unsigned.exe (17 MB)
 
 Schritte:
 1. Installationsdatei herunterladen
@@ -27,7 +27,7 @@ Schritte:
 4. Symbol erscheint auf dem Desktop
 
 OPTION B: PORTABLE
-Datei: rxb-0.2.0-win64-portable.zip (49 MB)
+Datei: rxb-0.3.0-win64-portable.zip (49 MB)
 
 Schritte:
 1. ZIP-Datei herunterladen
@@ -451,7 +451,7 @@ PROJEKTINFORMATIONEN
 
 Website: https://rxbcore.org
 
-Version: 0.2.0
+Version: 0.3.0
 Veröffentlichungsdatum: Januar 2025
 Technologie: RXBNetwork nutzt Bitcoin Core 20.2 Bibliotheken und Struktur
 Netzwerk: Mainnet
@@ -515,7 +515,7 @@ SHA256:
 
 So überprüfen Sie Prüfsumme in Windows:
 1. PowerShell öffnen
-2. Eingeben: Get-FileHash .\rxb-0.2.0-win64-setup-unsigned.exe
+2. Eingeben: Get-FileHash .\rxb-0.3.0-win64-setup-unsigned.exe
 3. Ergebnis mit obigem vergleichen
 
 Wenn Prüfsummen nicht übereinstimmen - DATEI NICHT AUSFÜHREN!

@@ -1,5 +1,5 @@
 ===============================================================================
-RXB v0.2.0 - Pelna instrukcja na Windows
+RXB v0.3.0 - Pelna instrukcja na Windows
 ===============================================================================
 
 SPIS TRESCI:
@@ -18,7 +18,7 @@ SPIS TRESCI:
 ===============================================================================
 
 OPCJA A: INSTALATOR (zalecane)
-Plik: RXB-core -0.2.0-win64-setup-unsigned.exe (17 MB)
+Plik: RXB-core -0.3.0-win64-setup-unsigned.exe (17 MB)
 
 Kroki:
 1. Pobierz plik instalatora
@@ -27,7 +27,7 @@ Kroki:
 4. Ikona pojawi sie na pulpicie
 
 OPCJA B: PORTABLE
-Plik: rxb-0.2.0-win64-portable.zip (49 MB)
+Plik: rxb-0.3.0-win64-portable.zip (49 MB)
 
 Kroki:
 1. Pobierz plik ZIP
@@ -457,7 +457,7 @@ INFORMACJE O PROJEKCIE
 
 Strona internetowa: https://rxbcore.org
 
-Wersja: 0.2.0 Eksperymentalna to oznacznie experymntalna jest spowodownae ze jest to pierwsza wersja.
+Wersja: 0.3.0 Eksperymentalna to oznacznie experymntalna jest spowodownae ze jest to pierwsza wersja.
 Data wydania: Styczen 2025
 Technologia: RXB wykorzystuje biblioteki i strukture Bitcoin Core 20.2
 Siec: Mainnet
@@ -522,7 +522,7 @@ SHA256:
 
 Jak sprawdzic sume kontrolna w Windows:
 1. Otwórz PowerShell
-2. Wpisz: Get-FileHash .\rxb-0.2.0-win64-setup-unsigned.exe
+2. Wpisz: Get-FileHash .\rxb-0.3.0-win64-setup-unsigned.exe
 3. Porownaj wynik z powyzszym
 
 

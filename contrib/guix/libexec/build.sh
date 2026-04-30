@@ -11,7 +11,7 @@ set -e -o pipefail
 echo "=== RXB Build ==="
 echo "Building for platform triple ${HOST:?not set} with reference timestamp ${SOURCE_DATE_EPOCH:?not set}..."
 echo "At most ${MAX_JOBS:?not set} jobs will run at once..."
-echo "Project: RXB 0.2.0"
+echo "Project: RXB 0.3.0"
 echo ""
 
 #####################
@@ -141,7 +141,7 @@ fi
 
 # Determine the full path to our source tarball
 SOURCEDIST="$(find "${OUTDIR}/src" -name 'rxb-*.tar.gz')"
-# Determine our distribution name (e.g. rxb-0.2.0)
+# Determine our distribution name (e.g. rxb-0.3.0)
 DISTNAME="$(basename "$SOURCEDIST" '.tar.gz')"
 
 echo "Distribution name: ${DISTNAME}"
@@ -231,7 +231,7 @@ export PATH="${BASEPREFIX}/${HOST}/native/bin:${PATH}"
         cp "${DISTSRC}/README.md" "${DISTNAME}/"
         
         # Create RXB specific version file
-        echo "RXB Blockchain (0.2.0)" > "${DISTNAME}/VERSION.txt"
+        echo "RXB Blockchain (0.3.0)" > "${DISTNAME}/VERSION.txt"
         echo "Build date: $(date)" >> "${DISTNAME}/VERSION.txt"
         echo "Build system: Guix" >> "${DISTNAME}/VERSION.txt"
         echo "Target: ${HOST}" >> "${DISTNAME}/VERSION.txt"

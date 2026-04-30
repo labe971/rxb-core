@@ -1,35 +1,51 @@
-# RXB Core Changelog
 
-## v0.2.0 — April 2026
+### RXB Core Changelog
+
+
+### v0.3.0 Foxbat - April 2026
+
 
 ### Consensus
 
-The difficulty adjustment algorithm has been revised to improve network
-stability under adverse conditions. The solvetime window has been widened
-to allow the algorithm to respond correctly when the chain experiences
-prolonged periods without blocks. 
-The clamp on difficulty movement is now asymmetric: 
-difficulty may rise by no more than five percent per block,
-whilst it may fall by up to thirty-three percent per block. 
-This should makes any attempt to manipulate the network through sustained external hashrate
-considerably less rewarding. 
-Overflow protections have been added to the target arithmetic as a matter of good practice.
+
+
+The LWMA per-block difficulty algorithm has been removed entirely and
+replaced with the classical Bitcoin-style retarget mechanism operating
+over a window of 2016 blocks.
+
+The asymmetric clamp is applied at each retarget interval.
+Difficulty may increase by no more than two percent per window. 
+Difficulty may decrease by up to fifty five percent per window. 
+This arrangement makes hashrate-rental attacks economically unviable. 
+To double the difficulty an attacker would need to sustain their hashrate continuously for
+roughly 490 days across 35 retarget windows. 
+Should hashrate fall the network recovers within a single retarget interval.
+
+The target block spacing remains ten minutes and the retarget interval is now 2016 blocks, consistent with Bitcoin.
+
 
 ### Security
-
-The network withstood a hashrate attack and remained operational. 
-The changes above directly address the conditions that made such an attack
-possible and substantially raise the cost of any future attempt.
+ 
+Under the previous per-block scheme a rented ASIC farm could spike difficulty in
+minutes. Under the new scheme the same attack would require sustained
+expenditure measured in years.
 
 ### Upgrade Notice
 
-This release contains consensus-critical changes. All node operators are
-kindly requested to upgrade to v0.2.0 at their earliest convenience.
-Nodes running v0.1.0 will not be compatible with the updated network
-rules. The latest source code is available at
-https://github.com/Heiwabitnull/rxb-core
+This release contains consensus critical changes. 
+All node operators must upgrade from source code immediately. 
+Nodes running v0.2.0 or earlier will not be compatible with the updated network rules.
+
+Source: https://github.com/Heiwabitnull/rxb-core
+I hope it will help and allows farms and home miners with ACSI/GPU devices to use RXBcore sustainably.
 
 
-## v0.1.0 — February 2026
+
+## v0.2.0 - April 2026
+
+Asymmetric LWMA clamp introduced. 
+Solvetime ceiling raised. Experimental label removed. Pool support added.
+
+## v0.1.0 - February 2026
 
 Initial release of RXB Core.

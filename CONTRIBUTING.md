@@ -200,4 +200,4 @@ Community Channels
   Anyone with a VPS is encouraged to support the network by running bridge nodes
   to help prevent network splits and improve connectivity.
 
-  ### Record XCore Blockchain (RXB)  version: 0.2.0
+  ### Record XCore Blockchain (RXB)  version: 0.3.0

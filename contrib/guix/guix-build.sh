@@ -49,7 +49,7 @@ for host in ${HOSTS=x86_64-linux-gnu arm-linux-gnueabihf aarch64-linux-gnu riscv
                              -- env HOST="$host" \
                                     MAX_JOBS="$MAX_JOBS" \
                                     SOURCE_DATE_EPOCH="${SOURCE_DATE_EPOCH:?unable to determine value}" \
-                                    DISTNAME="rxb-0.2.0" \
+                                    DISTNAME="rxb-0.3.0" \
                                     ${V:+V=1} \
                                     ${SOURCES_PATH:+SOURCES_PATH="$SOURCES_PATH"} \
                                   bash -c "cd /rxb && bash contrib/guix/libexec/build.sh"

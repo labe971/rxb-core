@@ -1,5 +1,5 @@
 ===============================================================================
-RXBNetwork v0.2.0 - Complete Guide for Windows
+RXBNetwork v0.3.0 - Complete Guide for Windows
 ===============================================================================
 
 TABLE OF CONTENTS:
@@ -18,7 +18,7 @@ TABLE OF CONTENTS:
 ===============================================================================
 
 OPTION A: INSTALLER (recommended)
-File: rxb-0.2.0-win64-setup-unsigned.exe (17 MB)
+File: rxb-0.3.0-win64-setup-unsigned.exe (17 MB)
 
 Steps:
 1. Download the installer file
@@ -27,7 +27,7 @@ Steps:
 4. Icon will appear on desktop
 
 OPTION B: PORTABLE
-File: rxb-0.2.0-win64-portable.zip (49 MB)
+File: rxb-0.3.0-win64-portable.zip (49 MB)
 
 Steps:
 1. Download the ZIP file
@@ -450,7 +450,7 @@ PROJECT INFORMATION
 
 Website: https://rxbcore.org
 
-Version: 0.2.0
+Version: 0.3.0
 Release date: January 2025
 Technology: RXBNetwork utilizes Bitcoin Core 20.2 libraries and structure
 Network: Mainnet
@@ -514,7 +514,7 @@ SHA256:
 
 How to check checksum in Windows:
 1. Open PowerShell
-2. Type: Get-FileHash .\rxb-0.2.0-win64-setup-unsigned.exe
+2. Type: Get-FileHash .\rxb-0.3.0-win64-setup-unsigned.exe
 3. Compare result with above
 
 If checksums don't match - DO NOT RUN THE FILE!
