@@ -1,3 +1,10 @@
+// Copyright (c) 2009-2010 Satoshi Nakamoto
+// Copyright (c) 2009-2020 The Bitcoin Core developers
+// Copyright (c) 2025-2026 Heiwabitnull (RXB Core)
+// Distributed under the MIT software license, see the accompanying
+// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+
 #include <chainparams.h>
 #include <chainparamsseeds.h>
 #include <consensus/merkle.h>
@@ -90,7 +97,7 @@ public:
         consensus.SegwitHeight = 0;
         consensus.MinBIP9WarningHeight = 0;
         consensus.powLimit = uint256S("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.nPowTargetTimespan = 10 * 60;
+        consensus.nPowTargetTimespan = 2016 * 10 * 60; // retarget every 2016 blocks
         consensus.nPowTargetSpacing  = 10 * 60;
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
@@ -124,6 +131,7 @@ public:
         vSeeds.emplace_back("5v2v5vq2jz6hjwzblnfvqr6rizbxllyst3wkcnfz7np2lskjsmrl2tqd.onion:8327");
         vSeeds.emplace_back("ig32f2l3xphumkptinc5j5ic4kj6mdyhobcfctcbkpfg4rhiuvbojmid.onion:8327");
         vSeeds.emplace_back("74zt3nxpo4sjjix47crkasbjk3gbsngrcqe4wi3q55aytjhns3ajyqqd.onion:8327");
+        vSeeds.emplace_back("135.181.255.219:8327");
 
         vFixedSeeds = std::vector<SeedSpec6>(
             pnSeed6_main,
@@ -149,13 +157,14 @@ public:
                 {1437, uint256S("0x000000000aa8d4c337b2602915a0f74a6b71a7c3a3f48f355d521039f231a2ca")},
                 {3500, uint256S("0x000000009629e422577342627781f77b4bd5d94f74546cc86c268fe9979289b9")},
                 {4435, uint256S("0x0000000000040e54efc9cb7dd5a8ec1b282bccc56708c08dd70a1c7a7661f1bb")},
+                {4847, uint256S("0x000000000000010a16470a0a748555acde558e335404561e5fc79163e165acb1")},
 
             }
         };
 
         chainTxData = ChainTxData{
-            1777357189,
-            4435,
+            1777570907,
+            4847,
             0.00096
         };
     }

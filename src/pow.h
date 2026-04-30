@@ -13,6 +13,7 @@ class CBlockHeader;
 class CBlockIndex;
 class uint256;
 
+unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params& params);
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader* pblock, const Consensus::Params& params);
 
 bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params& params);
