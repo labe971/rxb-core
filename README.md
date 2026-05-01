@@ -1,128 +1,121 @@
-# RXB Integration 
 
-Official website https://rxbcore.org/
 
-Source code https://github.com/Heiwabitnull/rxb-core.git
+# RXB Core v0.3.0 Foxbat
 
-## Download Binaries
+Official website: https://rxbcore.org
+Source code: https://github.com/Heiwabitnull/rxb-core
 
-Pre-compiled binaries for Windows and Linux are available at
-https://github.com/Heiwabitnull/rxb-core-binaries.git
 
-The repository contains two folders. 
-RXBWin for Windows builds and RXBLinux for Linux builds.
+
+## IMPORTANT Quick Start for New Nodes
+
+New nodes must use the bootstrap file for first-time synchronization.
+Direct sync from genesis block is not supported in v0.3.0 Foxbat.
+
+Step 1 Download bootstrap:
+https://github.com/Heiwabitnull/rxb-core/releases/tag/v0.3.0-foxbat
+
+Step 2 Extract before starting your node:
+tar -xzf rxb-bootstrap-4852.tar.gz -C ~/
+
+Step 3 Compile and start node normally.
 
 ## Overview
 
-RXB is a digital currency system based 
-on Bitcoin technology. 
-Block size is set to 6 megabytes and 
-OP_RETURN allows up to 300 bytes for data messages. 
-This provides reasonable transaction capacity and sufficient functionality.
 
-One of fundamental principles of RXB is rejection of 
-Ordinals protocol. 
-Thanks to this approach blockchain grows 
-at a steady moderate pace keeping full node size practical for home users.
+RXB is an open-source SHA-256 proof-of-work blockchain focused on
+document notarization and decentralized record keeping.
+No premine. No ICO. No investors. Just honest mining.
 
-System is balanced so home users and small entities can use 
-it effectively and reduces influence of large corporations on network.
+Block size is set to 6 megabytes.
+OP_RETURN supports up to 300 bytes for data messages.
+Network operates exclusively over Tor for privacy.
+P2P port: 8327
 
-RXB follows the principles that guided early decentralized 
-systems. Creating an independent financial network that operates 
-without restrictions from governments or institutions. 
-It gives users worldwide equal opportunities 
-to participate and help network grow.
 
 ## Key Features
 
-System includes SegWit support. 
-Home users can run full nodes without high costs 
-for hard drives or new hardware.
+  SHA-256 Proof of Work
+  Bitcoin style difficulty retarget every 2016 blocks (v0.3.0 Foxbat)
+  Asymmetric clamp: max +2% difficulty increase. Max -55% decrease per window
+  SegWit from block 0
+  Tor only network
+  Block reward: 100 RXB
+  Halving every 195,000 blocks
+  Total supply: 39,000,000 RXB
+  bech32 prefix is :  rxb
+  Legacy address prefix: B
 
-Older computers and laptops can mine blocks reducing electronic 
-waste and reusing existing hardware. 
-Main focus on home users without unusual protocols like Ordinals.
+## Mining Pool
 
-Minimises corporate influence and supports equal access for 
-all participants. 
-My wish is that RXB never adopts Ordinals protocol.
 
-## Project Goals
+Public solo pool available:
+stratum+tcp://135.181.255.219:3333
+Worker: YOUR_OWN_RXB_LEGACY_ADDRESS
+Password: x
 
-Project aims to provide a fair chance for new generations of 
-users and support growth of independent financial systems. 
-It allows higher transaction capacity and maintains a simple clear 
-and practical system.
+Legacy addresses start with B.
+Each block reward goes entirely to the miner who finds it.
 
-## Development and Testing
 
-RXB does not use a traditional testnet or regression tests.
-Users who want to run tests should dig up new genesis to use for testing. 
-This has a positive impact on the creation of new POW consensus-based systems.
+## Compile for Linux
+
+
+Install dependencies:
+
+sudo apt install build-essential libtool autotools-dev automake pkg-config \
+bsdmainutils python3 libssl-dev libevent-dev libboost-all-dev libdb++-dev tor
+
+Clone repository:
+git clone https://github.com/Heiwabitnull/rxb-core.git
+cd rxb-core
+
+
+Generate and configure:
+./autogen.sh
+./configure --disable-tests --disable-bench --without-miniupnpc \
+            --with-gui=qt5 --enable-wallet --with-incompatible-bdb
+
+Build.
+
+make -j$(nproc)
+
+Start Tor before running node:
+sudo systemctl start tor
+
+Run node.
+
+./src/rxbd -daemon
+sleep 30
+./src/rxb-cli getblockcount
+
+## Basic Commands
+
+Create wallet.
+
+./src/rxb-cli createwallet "mywallet"
+
+Get legacy address for mining:
+
+./src/rxb-cli getnewaddress "mining" legacy
+
+Start CPU mining:
+./src/rxb-cli startmining "YOUR_LEGACY_ADDRESS" 2
+
+Check status:
+
+./src/rxb-cli getmininginfo
+
+## Seed Nodes
+
+5v2v5vq2jz6hjwzblnfvqr6rizbxllyst3wkcnfz7np2lskjsmrl2tqd.onion:8327
+ig32f2l3xphumkptinc5j5ic4kj6mdyhobcfctcbkpfg4rhiuvbojmid.onion:8327
+74zt3nxpo4sjjix47crkasbjk3gbsngrcqe4wi3q55aytjhns3ajyqqd.onion:8327
+135.181.255.219:8327 (its bridge -- thanks to rafael for providing the vps bridge )
+
 
 ## License
 
-RXB is released under MIT License. 
-Project is based on Bitcoin version 20 built thanks to the work of Bitcoin 
-developers and Satoshi Nakamoto.
-
-More information about MIT License 
+RXB is released under MIT License.
+Project is based on Bitcoin Core version 20.
 https://opensource.org/licenses/MIT
-
-## Summary
-
-RXB is a digital currency system that supports high 
-transaction volumes. 
-It allows home users to participate easily 
-and enables mining on older hardware. 
-System reduces node maintenance costs and promotes decentralisation fairness 
-and practical accessibility for all users.
-Feel free to run full nodes and mine RXB coins on your home hardware.
-
-Compilation for windows:
-Navigate to your source directory. In this example we're using the Downloads folder.
-Generate configuration files
-
-# Go to source directory
-
-cd ~/Downloads/RXBcore
-
-# Generate
-
-./autogen.sh
-
-# Then
- 
-CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/ --host=x86_64-w64-mingw32 --disable-bench
-
-# Build
-
-make -j$(nproc)
-
-# Create installer
-
-make deploy
-
-
-
-Linux Compilation:
-
-# Go to source directory
-
-cd ~/Downloads/RXBcore
-
-# Generate files
-
-./autogen.sh
-
-# Configure for Linux
-
-./configure --prefix=$PWD/depends/x86_64-pc-linux-gnu --disable-bench
-
-# Build
-
-make -j$(nproc)
-
-
-
