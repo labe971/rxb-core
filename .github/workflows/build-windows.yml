@@ -7,6 +7,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          submodules: recursive  # Tenta di scaricare eventuali submoduli
 
       - name: Install dependencies
         run: |
@@ -15,14 +17,23 @@ jobs:
           sudo update-alternatives --set x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix
           sudo update-alternatives --set x86_64-w64-mingw32-gcc /usr/bin/x86_64-w64-mingw32-gcc-posix
 
+      - name: Check depends folder
+        run: |
+          # Se la cartella depends è vuota o manca il Makefile, scarichiamo i file necessari
+          if [ ! -f depends/Makefile ]; then
+            echo "Depends Makefile missing, fixing..."
+            # Questo comando scarica i file mancanti se il fork è incompleto
+            git checkout master -- depends || true 
+          fi
+
       - name: Build depends
         run: |
-          make -C depends HOST=x86_64-w64-mingw32 -j$(nproc)
+          cd depends
+          make HOST=x86_64-w64-mingw32 -j$(nproc)
 
       - name: Build RXB Core
         run: |
           ./autogen.sh
-          # Aggiunto --with-incompatible-bdb per evitare errori comuni sui fork
           CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/ --disable-tests --disable-bench --with-incompatible-bdb
           make -j$(nproc)
 
