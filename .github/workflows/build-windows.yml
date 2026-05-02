@@ -1,4 +1,4 @@
-name: Build RXB Windows
+name: Build RXB Windows (No GUI)
 on: [push, workflow_dispatch]
 
 jobs:
@@ -17,8 +17,7 @@ jobs:
 
       - name: Fix Missing Depends
         run: |
-          # Usiamo le virgolette per evitare che l'URL venga troncato
-          git clone --depth 1 --branch v0.20.1 "https://github.com/bitcoin/bitcoin.git" temp_btc
+          git clone --depth 1 --branch v0.20.1 "https://github.com" temp_btc
           mkdir -p depends
           cp -rv temp_btc/depends/* depends/
           rm -rf temp_btc
@@ -26,20 +25,20 @@ jobs:
       - name: Build depends
         run: |
           cd depends
-          make HOST=x86_64-w64-mingw32 -j$(nproc)
+          # NO_QT=1 disabilita la parte che genera l'errore
+          make HOST=x86_64-w64-mingw32 -j$(nproc) NO_QT=1
 
       - name: Build RXB Core
         run: |
           ./autogen.sh
-          # Usiamo il flag incompatible-bdb per i fork datati
-          CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/ --disable-tests --disable-bench --with-incompatible-bdb
+          # --without-gui istruisce il compilatore a saltare Qt
+          CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/ --disable-tests --disable-bench --with-incompatible-bdb --without-gui
           make -j$(nproc)
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: RXB-Core-Windows
+          name: RXB-Core-Windows-NoGUI
           path: |
             src/rxbd.exe
             src/rxb-cli.exe
-            src/qt/rxb-qt.exe
