@@ -17,8 +17,10 @@ jobs:
 
       - name: Fix Missing Depends
         run: |
-          git clone --depth 1 --branch v0.20.1 https://github.com temp_btc
-          cp -R temp_btc/depends/. depends/
+          # Usiamo le virgolette per evitare che l'URL venga troncato
+          git clone --depth 1 --branch v0.20.1 "https://github.com/bitcoin/bitcoin.git" temp_btc
+          mkdir -p depends
+          cp -rv temp_btc/depends/* depends/
           rm -rf temp_btc
 
       - name: Build depends
@@ -29,6 +31,7 @@ jobs:
       - name: Build RXB Core
         run: |
           ./autogen.sh
+          # Usiamo il flag incompatible-bdb per i fork datati
           CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/ --disable-tests --disable-bench --with-incompatible-bdb
           make -j$(nproc)
 
