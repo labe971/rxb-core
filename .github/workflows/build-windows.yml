@@ -17,21 +17,27 @@ jobs:
 
       - name: Fix Missing Depends
         run: |
-          # Scarichiamo i file depends direttamente come archivio per evitare errori di git clone
-          curl -L https://github.com -o btc.tar.gz
-          tar -xzf btc.tar.gz
+          # Metodo Sparse-Checkout: scarica solo la cartella depends da Bitcoin v0.20.1
+          git clone --filter=blob:none --no-checkout https://github.com btc_build
+          cd btc_build
+          git checkout v0.20.1 -- depends
+          cd ..
           mkdir -p depends
-          cp -rv bitcoin-0.20.1/depends/* depends/
-          rm -rf bitcoin-0.20.1 btc.tar.gz
+          cp -rv btc_build/depends/* depends/
+          rm -rf btc_build
+          # Verifica che il Makefile sia al suo posto
+          ls -la depends/Makefile
 
       - name: Build depends
         run: |
           cd depends
+          # NO_QT=1 evita l'errore delle librerie grafiche che non ti servono per il mining
           make HOST=x86_64-w64-mingw32 -j$(nproc) NO_QT=1
 
       - name: Build RXB Core
         run: |
           ./autogen.sh
+          # Configurazione ottimizzata per un nodo da mining (No GUI, No Tests)
           CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/ --disable-tests --disable-bench --with-incompatible-bdb --without-gui
           make -j$(nproc)
 
