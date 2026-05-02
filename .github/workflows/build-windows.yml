@@ -17,21 +17,21 @@ jobs:
 
       - name: Fix Missing Depends
         run: |
-          git clone --depth 1 --branch v0.20.1 "https://github.com" temp_btc
+          # Scarichiamo i file depends direttamente come archivio per evitare errori di git clone
+          curl -L https://github.com -o btc.tar.gz
+          tar -xzf btc.tar.gz
           mkdir -p depends
-          cp -rv temp_btc/depends/* depends/
-          rm -rf temp_btc
+          cp -rv bitcoin-0.20.1/depends/* depends/
+          rm -rf bitcoin-0.20.1 btc.tar.gz
 
       - name: Build depends
         run: |
           cd depends
-          # NO_QT=1 disabilita la parte che genera l'errore
           make HOST=x86_64-w64-mingw32 -j$(nproc) NO_QT=1
 
       - name: Build RXB Core
         run: |
           ./autogen.sh
-          # --without-gui istruisce il compilatore a saltare Qt
           CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/ --disable-tests --disable-bench --with-incompatible-bdb --without-gui
           make -j$(nproc)
 
