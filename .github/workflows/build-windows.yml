@@ -7,8 +7,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          submodules: recursive  # Tenta di scaricare eventuali submoduli
 
       - name: Install dependencies
         run: |
@@ -17,14 +15,12 @@ jobs:
           sudo update-alternatives --set x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix
           sudo update-alternatives --set x86_64-w64-mingw32-gcc /usr/bin/x86_64-w64-mingw32-gcc-posix
 
-      - name: Check depends folder
+      - name: Fix Missing Depends
         run: |
-          # Se la cartella depends è vuota o manca il Makefile, scarichiamo i file necessari
-          if [ ! -f depends/Makefile ]; then
-            echo "Depends Makefile missing, fixing..."
-            # Questo comando scarica i file mancanti se il fork è incompleto
-            git checkout master -- depends || true 
-          fi
+          # Scarichiamo i file di build necessari da Bitcoin v0.20.1
+          git clone --depth 1 --branch v0.20.1 https://github.com temp_btc
+          cp -r temp_btc/depends/* depends/
+          rm -rf temp_btc
 
       - name: Build depends
         run: |
