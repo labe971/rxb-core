@@ -17,9 +17,8 @@ jobs:
 
       - name: Fix Missing Depends
         run: |
-          # Scarichiamo i file di build necessari da Bitcoin v0.20.1
           git clone --depth 1 --branch v0.20.1 https://github.com temp_btc
-          cp -r temp_btc/depends/* depends/
+          cp -R temp_btc/depends/. depends/
           rm -rf temp_btc
 
       - name: Build depends
