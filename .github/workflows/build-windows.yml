@@ -16,16 +16,15 @@ jobs:
           sudo update-alternatives --set x86_64-w64-mingw32-gcc /usr/bin/x86_64-w64-mingw32-gcc-posix
 
       - name: Fix Missing Depends
-        env:
-          BTC_URL: "https://github.com"
         run: |
-          # Usiamo la variabile d'ambiente per nascondere l'URL al parser
-          git clone --depth 1 --branch v0.20.1 "$BTC_URL" btc_temp
+          rm -rf btc_temp
+          PARTE1="https://github.com/"
+          PARTE2="bitcoin/bitcoin.git"
+          git clone --depth 1 --branch v0.20.1 "${PARTE1}${PARTE2}" btc_temp
           mkdir -p depends
           cp -rv btc_temp/depends/* depends/
           rm -rf btc_temp
           ls -la depends/Makefile
-
       - name: Build depends
         run: |
           cd depends
