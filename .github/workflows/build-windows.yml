@@ -1,0 +1,35 @@
+name: Build RXB Windows
+on: [push, workflow_dispatch]
+
+jobs:
+  build-windows:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install build-essential libtool autotools-dev automake pkg-config bsdmainutils curl git g++-mingw-w64-x86-64 -y
+          sudo update-alternatives --set x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix
+          sudo update-alternatives --set x86_64-w64-mingw32-gcc /usr/bin/x86_64-w64-mingw32-gcc-posix
+
+      - name: Build depends
+        run: |
+          make -C depends HOST=x86_64-w64-mingw32 -j$(nproc)
+
+      - name: Build RXB Core
+        run: |
+          ./autogen.sh
+          CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/ --disable-tests --disable-bench
+          make -j$(nproc)
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: RXB-Core-Windows
+          path: |
+            src/rxbd.exe
+            src/rxb-cli.exe
+            src/qt/rxb-qt.exe
